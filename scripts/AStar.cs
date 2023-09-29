@@ -57,7 +57,7 @@ public class AStar {
         //It's already in the active list, but that's OK, maybe this new tile has a better value (e.g. We might zigzag earlier but this is now straighter). 
         if (activeTiles.Any(x => x.X == walkableTile.X && x.Y == walkableTile.Y)) {
           var existingTile = activeTiles.First(x => x.X == walkableTile.X && x.Y == walkableTile.Y);
-          if (existingTile.CostDistance > checkTile.CostDistance) {
+          if (existingTile.CostDistance > walkableTile.CostDistance) {
             activeTiles.Remove(existingTile);
             activeTiles.Add(walkableTile);
           }
@@ -87,13 +87,9 @@ public class AStar {
 
     possibleTiles.ForEach(tile => tile.SetDistance(targetTile.X, targetTile.Y));
 
-    Bounds bounds = calculateBounds(tilemap);
-
     return possibleTiles
-        .Where(tile => tile.X >= bounds.minX && tile.X <= bounds.maxX)
-        .Where(tile => tile.Y >= bounds.minY && tile.Y <= bounds.maxY)
         // TODO: figure out detecting traversable vs non-traversable tiles
-        .Where(tile => tilemap.GetCellTileData(0, new Vector2I(tile.X, tile.Y)) != null || targetTile == tile)
+        .Where(tile => tilemap.GetCellTileData(0, new Vector2I(tile.X, tile.Y)) != null)
         .ToList();
   }
 
