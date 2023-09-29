@@ -3,9 +3,10 @@ using Godot.Collections;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 
 public class AStar {
-  public static List<Vector2I> findPath(Vector2I startCellPos, Vector2I targetCellPos, TileMap tilemap) {
+  public static List<Vector2I> findPath(Vector2I startCellPos, Vector2I targetCellPos, TileMap tilemap, Unit movingUnit) {
     List<Vector2I> path = new List<Vector2I>();
 
     Tile start = new Tile();
@@ -33,7 +34,8 @@ public class AStar {
         // GD.Print("Retracing steps backwards...");
         while (true) {
           // GD.Print($"{tile.X} : {tile.Y}");
-          if (tilemap.GetCellTileData(0, new Vector2I(tile.X, tile.Y)) != null) {
+          // if (tilemap.GetCellTileData(0, new Vector2I(tile.X, tile.Y)) != null) {
+          if (isTraversable(tilemap, new Vector2I(tile.X, tile.Y), movingUnit)) {
             path.Add(new Vector2I(tile.X, tile.Y));
           }
           tile = tile.Parent;
@@ -47,7 +49,7 @@ public class AStar {
       visitedTiles.Add(checkTile);
       activeTiles.Remove(checkTile);
 
-      var walkableTiles = getWalkableTiles(tilemap, checkTile, finish);
+      var walkableTiles = getWalkableTiles(tilemap, checkTile, finish, movingUnit);
 
       foreach (var walkableTile in walkableTiles) {
         //We have already visited this tile so we don't need to do so again!
@@ -72,7 +74,7 @@ public class AStar {
     return path;
   }
 
-  private static List<Tile> getWalkableTiles(TileMap tilemap, Tile currentTile, Tile targetTile) {
+  private static List<Tile> getWalkableTiles(TileMap tilemap, Tile currentTile, Tile targetTile, Unit movingUnit) {
     var possibleTiles = new List<Tile>()
     {
     new Tile { X = currentTile.X, Y = currentTile.Y - 1, Parent = currentTile, Cost = currentTile.Cost + 1 },
@@ -89,7 +91,7 @@ public class AStar {
 
     return possibleTiles
         // TODO: figure out detecting traversable vs non-traversable tiles
-        .Where(tile => tilemap.GetCellTileData(0, new Vector2I(tile.X, tile.Y)) != null)
+        .Where(tile => isTraversable(tilemap, new Vector2I(tile.X, tile.Y), movingUnit)) // tilemap.GetCellTileData(0, new Vector2I(tile.X, tile.Y)) != null)
         .ToList();
   }
 
@@ -115,5 +117,32 @@ public class AStar {
     }
 
     return bounds;
+  }
+
+  public static bool isTraversable(TileMap tilemap, Vector2I cellPos, Unit movingUnit) {
+    bool isTraversable;
+
+    isTraversable = tilemap.GetCellTileData(0, cellPos) != null;
+    foreach (Unit unit in Engine.units) {
+      isTraversable = isTraversable && (!(unit.isEnemy != movingUnit.isEnemy && cellPos == tilemap.LocalToMap(unit.Position)) || movingUnit.isEnemy);
+      if (!isTraversable) {
+        break;
+      }
+    }
+
+    return isTraversable;
+  }
+
+  public static bool isOccupied(TileMap tilemap, Vector2I cellPos, Unit movingUnit) {
+    bool isVacant = true;
+
+    foreach (Unit unit in Engine.units) {
+      isVacant = isVacant && (unit == movingUnit || !(cellPos == tilemap.LocalToMap(unit.Position)));
+      if (!isVacant) {
+        break;
+      }
+    }
+
+    return !isVacant;
   }
 }
