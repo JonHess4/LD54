@@ -1,0 +1,52 @@
+[gd_scene load_steps=9 format=3 uid="uid://0pf31t7th2lx"]
+
+[ext_resource type="Texture2D" uid="uid://bdmv5lceococr" path="res://sprites/Meh.png" id="1_wj5gq"]
+[ext_resource type="Texture2D" uid="uid://bn1wu3injcf2m" path="res://sprites/me.png" id="2_6f5xg"]
+[ext_resource type="Script" path="res://scripts/Me.cs" id="3_4fn0w"]
+[ext_resource type="Texture2D" uid="uid://bfwpdvdurvsov" path="res://sprites/them.png" id="4_ryf7i"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k3vvu"]
+texture = ExtResource("1_wj5gq")
+1:1/0 = 0
+2:1/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+2:3/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_nyswr"]
+sources/0 = SubResource("TileSetAtlasSource_k3vvu")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tfmvf"]
+texture = ExtResource("1_wj5gq")
+1:1/0 = 0
+2:1/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+2:3/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_fk5se"]
+sources/0 = SubResource("TileSetAtlasSource_tfmvf")
+
+[node name="Node2D" type="Node2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_nyswr")
+format = 2
+layer_0/tile_data = PackedInt32Array(-65539, 65536, 1, -3, 65536, 2, 65533, 65536, 1, 131069, 131072, 1, -131074, 65536, 1, -65538, 65536, 2, -2, 65536, 1, 65534, 131072, 1, 131070, 65536, 1, 196606, 131072, 1, -131073, 65536, 2, -65537, 65536, 1, -1, 131072, 1, 65535, 65536, 1, 131071, 131072, 1, 196607, 65536, 1, -196608, 65536, 1, -131072, 131072, 1, -65536, 65536, 1, 0, 131072, 1, 65536, 65536, 1, 131072, 131072, 1, -196607, 65536, 2, -131071, 65536, 1, -65535, 131072, 1, 1, 65536, 1, 65537, 131072, 1, 131073, 65536, 1, -196606, 65536, 1, -131070, 131072, 1, -65534, 65536, 1, 2, 131072, 1, 65538, 65536, 1, 131074, 131072, 1, -131069, 65536, 1, -65533, 131072, 1, 3, 65536, 1, 65539, 131072, 1, 131075, 131072, 2, 262142, 65536, 1, 262143, 131072, 1, 196608, 131072, 2, 196609, 131072, 1, 196610, 131072, 2, 196605, 65536, 1, -131075, 65536, 2, -196610, 65536, 2, -196609, 65536, 1, -262144, 65536, 2, -262143, 65536, 1, -262142, 65536, 2, -196605, 131072, 1, -131068, 131072, 1, -65532, 65536, 1, 4, 131072, 1, 65540, 131072, 2, 131076, 131072, 1, 196611, 131072, 1, 262146, 131072, 1, 262145, 131072, 2, 262144, 131072, 1, 327679, 131072, 2, 327678, 131072, 1, 262141, 131072, 1, 196604, 131072, 1, 131068, 65536, 1, 65532, 131072, 1, -4, 65536, 1, -65540, 65536, 2, -131076, 65536, 1, -196611, 65536, 1, -262141, 65536, 1, -196604, 65536, 1, 196612, 131072, 2, 262147, 131072, 2, 327677, 131072, 2, 262140, 65536, 1)
+
+[node name="TileMap2" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_fk5se")
+format = 2
+
+[node name="Me" type="Sprite2D" parent="."]
+position = Vector2(8, 7)
+texture = ExtResource("2_6f5xg")
+script = ExtResource("3_4fn0w")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(8, 0)
+zoom = Vector2(4, 4)
+
+[node name="Them" type="Sprite2D" parent="."]
+position = Vector2(-40, -41)
+texture = ExtResource("4_ryf7i")
