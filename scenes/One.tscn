@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://0pf31t7th2lx"]
+[gd_scene load_steps=10 format=3 uid="uid://0pf31t7th2lx"]
 
 [ext_resource type="Texture2D" uid="uid://bdmv5lceococr" path="res://sprites/Meh.png" id="1_wj5gq"]
 [ext_resource type="Texture2D" uid="uid://bn1wu3injcf2m" path="res://sprites/me.png" id="2_6f5xg"]
-[ext_resource type="Script" path="res://scripts/Me.cs" id="3_4fn0w"]
+[ext_resource type="Script" path="res://scripts/AllyUnit.cs" id="3_ugj4j"]
 [ext_resource type="Texture2D" uid="uid://bfwpdvdurvsov" path="res://sprites/them.png" id="4_ryf7i"]
+[ext_resource type="Script" path="res://scripts/EnemyUnit.cs" id="5_6vwoy"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k3vvu"]
 texture = ExtResource("1_wj5gq")
@@ -41,7 +42,7 @@ format = 2
 [node name="Me" type="Sprite2D" parent="."]
 position = Vector2(8, 7)
 texture = ExtResource("2_6f5xg")
-script = ExtResource("3_4fn0w")
+script = ExtResource("3_ugj4j")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2(8, 0)
@@ -50,3 +51,4 @@ zoom = Vector2(4, 4)
 [node name="Them" type="Sprite2D" parent="."]
 position = Vector2(-40, -41)
 texture = ExtResource("4_ryf7i")
+script = ExtResource("5_6vwoy")

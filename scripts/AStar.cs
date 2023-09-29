@@ -38,6 +38,7 @@ public class AStar {
           }
           tile = tile.Parent;
           if (tile == null) {
+            path.Reverse();
             return path;
           }
         }
@@ -67,7 +68,7 @@ public class AStar {
       }
     }
 
-    GD.Print("No Path Found!");
+    // GD.Print("No Path Found!");
     return path;
   }
 
@@ -78,6 +79,10 @@ public class AStar {
     new Tile { X = currentTile.X, Y = currentTile.Y + 1, Parent = currentTile, Cost = currentTile.Cost + 1},
     new Tile { X = currentTile.X - 1, Y = currentTile.Y, Parent = currentTile, Cost = currentTile.Cost + 1 },
     new Tile { X = currentTile.X + 1, Y = currentTile.Y, Parent = currentTile, Cost = currentTile.Cost + 1 },
+    // new Tile { X = currentTile.X + 1, Y = currentTile.Y + 1, Parent = currentTile, Cost = currentTile.Cost + 1 },
+    // new Tile { X = currentTile.X + 1, Y = currentTile.Y - 1, Parent = currentTile, Cost = currentTile.Cost + 1 },
+    // new Tile { X = currentTile.X - 1, Y = currentTile.Y + 1, Parent = currentTile, Cost = currentTile.Cost + 1 },
+    // new Tile { X = currentTile.X - 1, Y = currentTile.Y - 1, Parent = currentTile, Cost = currentTile.Cost + 1 },
   };
 
     possibleTiles.ForEach(tile => tile.SetDistance(targetTile.X, targetTile.Y));
