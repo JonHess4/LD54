@@ -25,6 +25,26 @@ public partial class Unit : Sprite2D {
   public bool isTeamTurn = true;
   public RichTextLabel damageText;
   public double damageTextDisplayTime = 0;
+
+  // Called when the node enters the scene tree for the first time.
+  public override void _Ready() {
+    Engine.addUnit(this);
+    this.tilemap = GetNode<TileMap>("../TileMap");
+    this.healthbar = GetNode<ProgressBar>("./HealthBar");
+    this.unitDetails = GetNode<RichTextLabel>("../UnitDetails");
+    this.damageText = GetNode<RichTextLabel>("./DamageText");
+    StyleBoxFlat sbf = new StyleBoxFlat();
+    healthbar.AddThemeStyleboxOverride("fill", sbf);
+    sbf.BgColor = new Color("C0483D");
+
+    
+    this.oldCellPos = this.tilemap.LocalToMap(this.Position);
+    this.targetCellPos = this.tilemap.LocalToMap(this.Position);
+  }
+  // Called every frame. 'delta' is the elapsed time since the previous frame.
+  public override void _Process(double delta) {
+  }
+
   public virtual void setIsTargeted(bool isTargeted) {
     this.isTargeted = isTargeted;
   }

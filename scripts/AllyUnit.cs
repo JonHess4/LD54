@@ -10,8 +10,22 @@ public partial class AllyUnit : Unit {
   public TileMap tilemap2;
   public List<Vector2I> priorityCells;
 
+  // Called when the node enters the scene tree for the first time.
+  public override void _Ready() {
+    base._Ready();
+
+    this.isEnemy = false;
+    this.isTurn = true;
+    this.isSelected = false;
+    this.isTeamTurn = true;
+    
+    this.tilemap2 = GetNode<TileMap>("../TileMap2");
+  }
+
   // Called every frame. 'delta' is the elapsed time since the previous frame.
   public override void _Process(double delta) {
+    base._Process(delta);
+
     if (this.damageText.Text != null && this.damageText.Text.Length > 0) {
       this.damageTextDisplayTime += delta;
       if (this.damageTextDisplayTime > 1) {

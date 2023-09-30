@@ -13,15 +13,9 @@ public partial class EnemyUnit : Unit {
   public bool isTurnStarted = false;
   public bool isReachedNextTile = false;
   public override void _Ready() {
-    Engine.addUnit(this);
+    base._Ready();
+
     this.isTeamTurn = false;
-    this.tilemap = GetNode<TileMap>("../TileMap");
-    this.healthbar = GetNode<ProgressBar>("./HealthBar");
-    this.unitDetails = GetNode<RichTextLabel>("../UnitDetails");
-    this.damageText = GetNode<RichTextLabel>("./DamageText");
-    StyleBoxFlat sbf = new StyleBoxFlat();
-    healthbar.AddThemeStyleboxOverride("fill", sbf);
-    sbf.BgColor = new Color("C0483D");
     this.isEnemy = true;
     this.movement = 6;
     this.maxHp = 5;
@@ -33,8 +27,6 @@ public partial class EnemyUnit : Unit {
     this.atkRange = 1;
     this.healthbar.MaxValue = this.maxHp;
     this.healthbar.Value = this.currentHp;
-    this.oldCellPos = this.tilemap.LocalToMap(this.Position);
-    this.targetCellPos = this.tilemap.LocalToMap(this.Position);
   }
 
   public static Texture2D getTargetedTexture() {
@@ -57,6 +49,8 @@ public partial class EnemyUnit : Unit {
 
   // Called every frame. 'delta' is the elapsed time since the previous frame.
   public override void _Process(double delta) {
+    base._Process(delta);
+
     if (this.damageText.Text != null && this.damageText.Text.Length > 0) {
       this.damageTextDisplayTime += delta;
       if (this.damageTextDisplayTime > 1) {
@@ -74,9 +68,6 @@ public partial class EnemyUnit : Unit {
         this.isTurnStarted = true;
         this.isReachedNextTile = false;
         this.findTargetAndPath();
-        foreach (Vector2I pos in this.path) {
-          GD.Print("Path: " + pos);
-        }
       }
       this.tickTimer += delta;
       if (this.tickTimer >= this.tickRate) {
@@ -140,7 +131,6 @@ public partial class EnemyUnit : Unit {
           break;
         }
       }
-      GD.Print("PathCount: " + this.path.Count);
     }
   }
 }
