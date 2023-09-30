@@ -6,120 +6,193 @@
 [ext_resource type="Script" path="res://scripts/SwordUnit.cs" id="5_2v616"]
 [ext_resource type="Script" path="res://scripts/EnemyUnit.cs" id="5_6vwoy"]
 [ext_resource type="Texture2D" uid="uid://yrs153yse1b" path="res://sprites/blue-book.png" id="6_2avgw"]
-[ext_resource type="Texture2D" uid="uid://cewc3v5pprpxa" path="res://sprites/red-book.png" id="7_4tx2s"]
 [ext_resource type="Script" path="res://scripts/TomeUnit.cs" id="7_ecxfq"]
 [ext_resource type="Texture2D" uid="uid://dhf5v02b3r0j7" path="res://sprites/blue-bow.png" id="8_btyaq"]
+[ext_resource type="FontFile" uid="uid://cj2ejkugssfnv" path="res://fonts/Ohrenstead.ttf" id="10_nddnx"]
 [ext_resource type="Script" path="res://scripts/BowUnit.cs" id="10_y3sxs"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k3vvu"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4u44p"]
 texture = ExtResource("1_wj5gq")
+texture_region_size = Vector2i(32, 32)
 1:1/0 = 0
 2:1/0 = 0
 1:2/0 = 0
 2:2/0 = 0
+1:3/0 = 0
 2:3/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_nyswr"]
-sources/0 = SubResource("TileSetAtlasSource_k3vvu")
+tile_size = Vector2i(32, 32)
+sources/0 = SubResource("TileSetAtlasSource_4u44p")
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tfmvf"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k8nbk"]
 texture = ExtResource("1_wj5gq")
+texture_region_size = Vector2i(32, 32)
+2:2/0 = 0
+2:3/0 = 0
 1:1/0 = 0
 2:1/0 = 0
 1:2/0 = 0
-2:2/0 = 0
-2:3/0 = 0
+1:3/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_fk5se"]
-sources/0 = SubResource("TileSetAtlasSource_tfmvf")
+tile_size = Vector2i(32, 32)
+sources/0 = SubResource("TileSetAtlasSource_k8nbk")
 
 [node name="Node2D" type="Node2D"]
 
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(8, 8)
+zoom = Vector2(2, 2)
+
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_nyswr")
+cell_quadrant_size = 32
 format = 2
-layer_0/tile_data = PackedInt32Array(-196611, 65536, 1, -196610, 65536, 2, -196609, 65536, 1, -262144, 65536, 2, -262143, 65536, 1, -262142, 65536, 2, -262141, 65536, 1, -196604, 65536, 1, -196605, 131072, 1, -196606, 65536, 1, -196607, 65536, 2, -196608, 65536, 1, -131073, 65536, 2, -131074, 65536, 1, -131075, 65536, 2, -131076, 65536, 1, -65540, 65536, 2, -65539, 65536, 1, -65538, 65536, 2, -65537, 65536, 1, -131072, 131072, 1, -131071, 65536, 1, -131070, 131072, 1, -131069, 65536, 1, -131068, 131072, 1, -65532, 65536, 1, -65533, 131072, 1, -65534, 65536, 1, -65535, 131072, 1, -65536, 65536, 1, -1, 131072, 1, -2, 65536, 1, -3, 65536, 2, -4, 65536, 1, 65532, 131072, 1, 65533, 65536, 1, 65534, 131072, 1, 65535, 65536, 1, 0, 131072, 1, 1, 65536, 1, 2, 131072, 1, 3, 65536, 1, 65538, 65536, 1, 131070, 65536, 1, 131069, 131072, 1, 196604, 131072, 1, 65539, 131072, 1, 65540, 131072, 2, 4, 131072, 1, 131073, 65536, 1, 131072, 131072, 1, 196607, 65536, 1, 262143, 131072, 1, 262142, 65536, 1, 262141, 131072, 1, 262140, 65536, 1, 196605, 65536, 1, 196606, 131072, 1, 327678, 131072, 1, 327679, 131072, 2, 262144, 131072, 1, 262145, 131072, 2, 262146, 131072, 1, 262147, 131072, 2, 196612, 131072, 2, 131076, 131072, 1, 131075, 131072, 2, 131074, 131072, 1, 196608, 131072, 2, 196609, 131072, 1, 196610, 131072, 2, 196611, 131072, 1, 327677, 131072, 2, 131068, 65536, 1)
+layer_0/tile_data = PackedInt32Array(-196611, 65536, 1, -196610, 65536, 2, -196609, 65536, 1, -262144, 65536, 2, -262143, 65536, 1, -262142, 65536, 2, -262141, 65536, 1, -196604, 65536, 1, -196605, 131072, 1, -196606, 65536, 1, -196607, 65536, 2, -196608, 65536, 1, -131073, 65536, 2, -131074, 65536, 1, -131075, 65536, 2, -131076, 65536, 1, -65540, 65536, 2, -65539, 65536, 1, -65538, 131072, 2, -65537, 65536, 1, -131072, 131072, 1, -131071, 65536, 1, -131070, 131072, 1, -131069, 65536, 1, -131068, 131072, 1, -65532, 65536, 1, -65533, 131072, 1, -65534, 65536, 1, -65535, 131072, 1, -65536, 65536, 1, -1, 131072, 1, -2, 65536, 1, -3, 65536, 2, -4, 65536, 1, 65532, 131072, 1, 65533, 65536, 1, 65534, 131072, 1, 65535, 65536, 1, 0, 131072, 1, 1, 65536, 1, 2, 131072, 1, 3, 65536, 1, 65538, 65536, 1, 131070, 65536, 1, 131069, 131072, 1, 196604, 131072, 1, 65539, 131072, 1, 65540, 131072, 2, 4, 131072, 1, 131073, 65536, 1, 131072, 131072, 1, 196607, 65536, 1, 262143, 131072, 1, 262142, 65536, 1, 262141, 131072, 1, 262140, 65536, 1, 196605, 65536, 1, 196606, 131072, 1, 327678, 131072, 1, 327679, 131072, 2, 262144, 131072, 1, 262145, 131072, 2, 262146, 131072, 1, 262147, 131072, 2, 196612, 131072, 2, 131076, 131072, 1, 131075, 131072, 2, 131074, 131072, 1, 196608, 131072, 2, 196609, 131072, 1, 196610, 131072, 2, 196611, 131072, 1, 327677, 131072, 2, 131068, 65536, 1)
 
 [node name="TileMap2" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_fk5se")
+cell_quadrant_size = 32
 format = 2
 
+[node name="UnitDetails" type="RichTextLabel" parent="."]
+offset_left = 164.0
+offset_top = -117.0
+offset_right = 288.0
+offset_bottom = 122.0
+theme_override_fonts/normal_font = ExtResource("10_nddnx")
+theme_override_font_sizes/normal_font_size = 16
+fit_content = true
+
 [node name="RedSword" type="Sprite2D" parent="."]
-position = Vector2(-8, -8)
+position = Vector2(-80, -15)
 texture = ExtResource("2_ba60r")
 script = ExtResource("5_6vwoy")
 
 [node name="HealthBar" type="ProgressBar" parent="RedSword"]
-offset_left = -7.0
-offset_top = 5.0
-offset_right = 21.0
-offset_bottom = 9.0
+offset_left = -11.0
+offset_right = 33.0
+offset_bottom = 8.0
 scale = Vector2(0.5, 0.5)
 max_value = 8.0
 step = 1.0
+value = 6.0
 show_percentage = false
 
+[node name="DamageText" type="RichTextLabel" parent="RedSword"]
+offset_left = -5.0
+offset_top = -39.0
+offset_right = 11.0
+offset_bottom = -25.0
+theme_override_fonts/normal_font = ExtResource("10_nddnx")
+
+[node name="RedSword2" type="Sprite2D" parent="."]
+position = Vector2(-49, -80)
+texture = ExtResource("2_ba60r")
+script = ExtResource("5_6vwoy")
+
+[node name="HealthBar" type="ProgressBar" parent="RedSword2"]
+offset_left = -10.0
+offset_right = 34.0
+offset_bottom = 8.0
+scale = Vector2(0.5, 0.5)
+max_value = 8.0
+step = 1.0
+value = 6.0
+show_percentage = false
+
+[node name="DamageText" type="RichTextLabel" parent="RedSword2"]
+offset_left = -5.0
+offset_top = -39.0
+offset_right = 11.0
+offset_bottom = -25.0
+theme_override_fonts/normal_font = ExtResource("10_nddnx")
+
+[node name="RedSword3" type="Sprite2D" parent="."]
+position = Vector2(-80, 81)
+texture = ExtResource("2_ba60r")
+script = ExtResource("5_6vwoy")
+
+[node name="HealthBar" type="ProgressBar" parent="RedSword3"]
+offset_left = -11.0
+offset_right = 33.0
+offset_bottom = 8.0
+scale = Vector2(0.5, 0.5)
+max_value = 8.0
+step = 1.0
+value = 6.0
+show_percentage = false
+
+[node name="DamageText" type="RichTextLabel" parent="RedSword3"]
+offset_left = -5.0
+offset_top = -39.0
+offset_right = 11.0
+offset_bottom = -25.0
+theme_override_fonts/normal_font = ExtResource("10_nddnx")
+
 [node name="BlueSword" type="Sprite2D" parent="."]
-position = Vector2(40, -8)
+position = Vector2(79, -15)
 texture = ExtResource("4_xqbes")
 script = ExtResource("5_2v616")
 
 [node name="HealthBar" type="ProgressBar" parent="BlueSword"]
-offset_left = -7.0
-offset_top = 5.0
-offset_right = 21.0
-offset_bottom = 9.0
+offset_left = -10.0
+offset_right = 34.0
+offset_bottom = 8.0
 scale = Vector2(0.5, 0.5)
 max_value = 8.0
 step = 1.0
 value = 8.0
 show_percentage = false
 
-[node name="Camera2D" type="Camera2D" parent="."]
-offset = Vector2(8, 0)
-zoom = Vector2(4, 4)
+[node name="DamageText" type="RichTextLabel" parent="BlueSword"]
+offset_left = -2.0
+offset_top = -36.0
+offset_right = 10.0
+offset_bottom = -25.0
+theme_override_fonts/normal_font = ExtResource("10_nddnx")
 
 [node name="Blue-book" type="Sprite2D" parent="."]
-position = Vector2(56, 8)
+position = Vector2(113, 17)
 texture = ExtResource("6_2avgw")
 script = ExtResource("7_ecxfq")
 
 [node name="HealthBar" type="ProgressBar" parent="Blue-book"]
-offset_left = -7.0
-offset_top = 5.0
-offset_right = 21.0
-offset_bottom = 9.0
+offset_left = -12.0
+offset_right = 32.0
+offset_bottom = 8.0
 scale = Vector2(0.5, 0.5)
 max_value = 8.0
 step = 1.0
+value = 4.0
 show_percentage = false
 
-[node name="Red-book" type="Sprite2D" parent="."]
-position = Vector2(-24, -24)
-texture = ExtResource("7_4tx2s")
-script = ExtResource("5_6vwoy")
-
-[node name="HealthBar" type="ProgressBar" parent="Red-book"]
-offset_left = -7.0
-offset_top = 5.0
-offset_right = 21.0
-offset_bottom = 9.0
-scale = Vector2(0.5, 0.5)
-max_value = 8.0
-step = 1.0
-show_percentage = false
+[node name="DamageText" type="RichTextLabel" parent="Blue-book"]
+offset_left = -5.0
+offset_top = -35.0
+offset_right = 8.0
+offset_bottom = -22.0
+theme_override_fonts/normal_font = ExtResource("10_nddnx")
 
 [node name="Blue-bow" type="Sprite2D" parent="."]
-position = Vector2(56, -24)
+position = Vector2(112, -48)
 texture = ExtResource("8_btyaq")
 script = ExtResource("10_y3sxs")
 
 [node name="HealthBar" type="ProgressBar" parent="Blue-bow"]
-offset_left = -7.0
-offset_top = 5.0
-offset_right = 21.0
-offset_bottom = 9.0
+offset_left = -11.0
+offset_right = 33.0
+offset_bottom = 8.0
 scale = Vector2(0.5, 0.5)
 max_value = 8.0
 step = 1.0
+value = 6.0
 show_percentage = false
+
+[node name="DamageText" type="RichTextLabel" parent="Blue-bow"]
+offset_left = -5.0
+offset_top = -36.0
+offset_right = 7.0
+offset_bottom = -25.0
+theme_override_fonts/normal_font = ExtResource("10_nddnx")

@@ -10,6 +10,7 @@ public partial class SwordUnit : AllyUnit {
     this.maxHp = 8;
     this.currentHp = this.maxHp;
     this.atk = 6;
+    this.minAtk = 3;
     this.atkRange = 1;
     this.isTurn = true;
 
@@ -17,6 +18,8 @@ public partial class SwordUnit : AllyUnit {
     this.tilemap = GetNode<TileMap>("../TileMap");
     this.tilemap2 = GetNode<TileMap>("../TileMap2");
     this.healthbar = GetNode<ProgressBar>("./HealthBar");
+    this.unitDetails = GetNode<RichTextLabel>("../UnitDetails");
+    this.damageText = GetNode<RichTextLabel>("./DamageText");
     StyleBoxFlat sbf = new StyleBoxFlat();
     healthbar.AddThemeStyleboxOverride("fill", sbf);
     sbf.BgColor = new Color("C0483D");
@@ -24,6 +27,5 @@ public partial class SwordUnit : AllyUnit {
     this.healthbar.Value = this.currentHp;
     this.oldCellPos = this.tilemap.LocalToMap(this.Position);
     this.targetCellPos = this.tilemap.LocalToMap(this.Position);
-    this.pass = false;
   }
 }

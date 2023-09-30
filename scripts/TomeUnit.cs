@@ -10,6 +10,7 @@ public partial class TomeUnit : AllyUnit {
     this.maxHp = 4;
     this.currentHp = this.maxHp;
     this.atk = 2;
+    this.minAtk = 2;
     this.atkRange = 2;
     this.canHeal = true;
     this.isTurn = true;
@@ -18,6 +19,8 @@ public partial class TomeUnit : AllyUnit {
     this.tilemap = GetNode<TileMap>("../TileMap");
     this.tilemap2 = GetNode<TileMap>("../TileMap2");
     this.healthbar = GetNode<ProgressBar>("./HealthBar");
+    this.unitDetails = GetNode<RichTextLabel>("../UnitDetails");
+    this.damageText = GetNode<RichTextLabel>("./DamageText");
     StyleBoxFlat sbf = new StyleBoxFlat();
     healthbar.AddThemeStyleboxOverride("fill", sbf);
     sbf.BgColor = new Color("C0483D");
@@ -25,6 +28,5 @@ public partial class TomeUnit : AllyUnit {
     this.healthbar.Value = this.currentHp;
     this.oldCellPos = this.tilemap.LocalToMap(this.Position);
     this.targetCellPos = this.tilemap.LocalToMap(this.Position);
-    this.pass = false;
   }
 }

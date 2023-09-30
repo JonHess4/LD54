@@ -26,7 +26,11 @@ public class Engine {
     if (turnFlip) {
       foreach (Unit unit in units) {
       if (unit.isEnemy != isEnemy) {
-        unit.isTurn = true;
+        unit.readyTurn();
+        unit.isTeamTurn = true;
+      } else {
+        unit.isTeamTurn = false;
+        unit.resetColor();
       }
     }
     }
