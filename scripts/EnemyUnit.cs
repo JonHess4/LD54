@@ -7,7 +7,6 @@ public partial class EnemyUnit : Unit {
   // Called when the node enters the scene tree for the first time.
   public Texture2D idleTexture;
   public static Texture2D targetedTexture;
-  public List<Vector2I> priorityCells = new List<Vector2I>();
   public double tickRate = 0.3;
   public double tickTimer = 0;
   public bool isTurnStarted = false;
@@ -17,16 +16,8 @@ public partial class EnemyUnit : Unit {
 
     this.isTeamTurn = false;
     this.isEnemy = true;
-    this.movement = 6;
-    this.maxHp = 5;
-    this.currentHp = this.maxHp;
-    this.atk = 4;
-    this.minAtk = 2;
     this.idleTexture = this.Texture;
     this.isTurn = false;
-    this.atkRange = 1;
-    this.healthbar.MaxValue = this.maxHp;
-    this.healthbar.Value = this.currentHp;
   }
 
   public static Texture2D getTargetedTexture() {
@@ -99,6 +90,8 @@ public partial class EnemyUnit : Unit {
             Vector2I newTargetCellPos = this.tilemap.LocalToMap(this.target.Position);
             if (Math.Abs(this.targetCellPos.X - newTargetCellPos.X) + Math.Abs(this.targetCellPos.Y - newTargetCellPos.Y) <= this.atkRange) {
               this.attack(this.target);
+            } else {
+              this.attack(null);
             }
           }
         }
@@ -132,5 +125,9 @@ public partial class EnemyUnit : Unit {
         }
       }
     }
+  }
+
+  public override void attack(Unit target) {
+    base.attack(target);
   }
 }

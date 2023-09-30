@@ -1,11 +1,17 @@
-[gd_scene load_steps=15 format=3 uid="uid://0pf31t7th2lx"]
+[gd_scene load_steps=21 format=3 uid="uid://0pf31t7th2lx"]
 
 [ext_resource type="Texture2D" uid="uid://bdmv5lceococr" path="res://sprites/Meh.png" id="1_wj5gq"]
 [ext_resource type="Texture2D" uid="uid://bxradc7j1f4wg" path="res://sprites/red-sword.png" id="2_ba60r"]
+[ext_resource type="Script" path="res://scripts/ESwordUnit.cs" id="4_8dg7y"]
 [ext_resource type="Texture2D" uid="uid://cevs6qi4bqj86" path="res://sprites/blue-sword.png" id="4_xqbes"]
 [ext_resource type="Script" path="res://scripts/SwordUnit.cs" id="5_2v616"]
-[ext_resource type="Script" path="res://scripts/EnemyUnit.cs" id="5_6vwoy"]
+[ext_resource type="Texture2D" uid="uid://kvf8pdrq8a05" path="res://sprites/red-bomb.png" id="5_hcfkv"]
+[ext_resource type="Texture2D" uid="uid://3avx6leboycm" path="res://sprites/red-dagger.png" id="5_v4gk0"]
 [ext_resource type="Texture2D" uid="uid://yrs153yse1b" path="res://sprites/blue-book.png" id="6_2avgw"]
+[ext_resource type="Script" path="res://scripts/EDaggerUnit.cs" id="6_05iq4"]
+[ext_resource type="Script" path="res://scripts/DaggerUnit.cs" id="6_5o3cu"]
+[ext_resource type="Script" path="res://scripts/EBombUnit.cs" id="6_vtwfb"]
+[ext_resource type="Texture2D" uid="uid://b3lodwt62t72q" path="res://sprites/blue-dagger.png" id="7_ceveu"]
 [ext_resource type="Script" path="res://scripts/TomeUnit.cs" id="7_ecxfq"]
 [ext_resource type="Texture2D" uid="uid://dhf5v02b3r0j7" path="res://sprites/blue-bow.png" id="8_btyaq"]
 [ext_resource type="FontFile" uid="uid://cj2ejkugssfnv" path="res://fonts/Ohrenstead.ttf" id="10_nddnx"]
@@ -66,9 +72,9 @@ theme_override_font_sizes/normal_font_size = 16
 fit_content = true
 
 [node name="RedSword" type="Sprite2D" parent="."]
-position = Vector2(-80, -15)
+position = Vector2(-86, -20)
 texture = ExtResource("2_ba60r")
-script = ExtResource("5_6vwoy")
+script = ExtResource("4_8dg7y")
 
 [node name="HealthBar" type="ProgressBar" parent="RedSword"]
 offset_left = -11.0
@@ -87,34 +93,12 @@ offset_right = 11.0
 offset_bottom = -25.0
 theme_override_fonts/normal_font = ExtResource("10_nddnx")
 
-[node name="RedSword2" type="Sprite2D" parent="."]
-position = Vector2(-49, -80)
-texture = ExtResource("2_ba60r")
-script = ExtResource("5_6vwoy")
+[node name="RedBomb" type="Sprite2D" parent="."]
+position = Vector2(80, 15)
+texture = ExtResource("5_hcfkv")
+script = ExtResource("6_vtwfb")
 
-[node name="HealthBar" type="ProgressBar" parent="RedSword2"]
-offset_left = -10.0
-offset_right = 34.0
-offset_bottom = 8.0
-scale = Vector2(0.5, 0.5)
-max_value = 8.0
-step = 1.0
-value = 6.0
-show_percentage = false
-
-[node name="DamageText" type="RichTextLabel" parent="RedSword2"]
-offset_left = -5.0
-offset_top = -39.0
-offset_right = 11.0
-offset_bottom = -25.0
-theme_override_fonts/normal_font = ExtResource("10_nddnx")
-
-[node name="RedSword3" type="Sprite2D" parent="."]
-position = Vector2(-80, 81)
-texture = ExtResource("2_ba60r")
-script = ExtResource("5_6vwoy")
-
-[node name="HealthBar" type="ProgressBar" parent="RedSword3"]
+[node name="HealthBar" type="ProgressBar" parent="RedBomb"]
 offset_left = -11.0
 offset_right = 33.0
 offset_bottom = 8.0
@@ -124,7 +108,29 @@ step = 1.0
 value = 6.0
 show_percentage = false
 
-[node name="DamageText" type="RichTextLabel" parent="RedSword3"]
+[node name="DamageText" type="RichTextLabel" parent="RedBomb"]
+offset_left = -5.0
+offset_top = -39.0
+offset_right = 11.0
+offset_bottom = -25.0
+theme_override_fonts/normal_font = ExtResource("10_nddnx")
+
+[node name="RedDagger" type="Sprite2D" parent="."]
+position = Vector2(-39, -86)
+texture = ExtResource("5_v4gk0")
+script = ExtResource("6_05iq4")
+
+[node name="HealthBar" type="ProgressBar" parent="RedDagger"]
+offset_left = -10.0
+offset_right = 34.0
+offset_bottom = 8.0
+scale = Vector2(0.5, 0.5)
+max_value = 8.0
+step = 1.0
+value = 6.0
+show_percentage = false
+
+[node name="DamageText" type="RichTextLabel" parent="RedDagger"]
 offset_left = -5.0
 offset_top = -39.0
 offset_right = 11.0
@@ -132,7 +138,7 @@ offset_bottom = -25.0
 theme_override_fonts/normal_font = ExtResource("10_nddnx")
 
 [node name="BlueSword" type="Sprite2D" parent="."]
-position = Vector2(79, -15)
+position = Vector2(80, 48)
 texture = ExtResource("4_xqbes")
 script = ExtResource("5_2v616")
 
@@ -147,6 +153,28 @@ value = 8.0
 show_percentage = false
 
 [node name="DamageText" type="RichTextLabel" parent="BlueSword"]
+offset_left = -2.0
+offset_top = -36.0
+offset_right = 10.0
+offset_bottom = -25.0
+theme_override_fonts/normal_font = ExtResource("10_nddnx")
+
+[node name="BlueDagger" type="Sprite2D" parent="."]
+position = Vector2(79, -15)
+texture = ExtResource("7_ceveu")
+script = ExtResource("6_5o3cu")
+
+[node name="HealthBar" type="ProgressBar" parent="BlueDagger"]
+offset_left = -10.0
+offset_right = 34.0
+offset_bottom = 8.0
+scale = Vector2(0.5, 0.5)
+max_value = 8.0
+step = 1.0
+value = 8.0
+show_percentage = false
+
+[node name="DamageText" type="RichTextLabel" parent="BlueDagger"]
 offset_left = -2.0
 offset_top = -36.0
 offset_right = 10.0

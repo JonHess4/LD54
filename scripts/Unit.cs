@@ -25,6 +25,8 @@ public partial class Unit : Sprite2D {
   public bool isTeamTurn = true;
   public RichTextLabel damageText;
   public double damageTextDisplayTime = 0;
+  public List<Vector2I> priorityCells = new List<Vector2I>();
+
 
   // Called when the node enters the scene tree for the first time.
   public override void _Ready() {
@@ -37,8 +39,8 @@ public partial class Unit : Sprite2D {
     healthbar.AddThemeStyleboxOverride("fill", sbf);
     sbf.BgColor = new Color("C0483D");
 
-    
     this.oldCellPos = this.tilemap.LocalToMap(this.Position);
+    this.Position = this.tilemap.MapToLocal(this.oldCellPos) + this.posMod;
     this.targetCellPos = this.tilemap.LocalToMap(this.Position);
   }
   // Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -62,12 +64,15 @@ public partial class Unit : Sprite2D {
     }
   }
 
-  public void attack(Unit target) {
-    int mod = new Random().Next(this.minAtk, this.atk + 1) * -1;
-    if (this.canHeal && target.isEnemy == this.isEnemy) {
-      mod = mod * -1;
+  public virtual void attack(Unit target) {
+    if (target != null) {
+      int mod = new Random().Next(this.minAtk, this.atk + 1) * -1;
+      if (this.canHeal && target.isEnemy == this.isEnemy) {
+        mod = mod * -1;
+      }
+      target.modHp(mod);
     }
-    target.modHp(mod);
+
   }
 
   public void endTurn() {
@@ -88,10 +93,10 @@ public partial class Unit : Sprite2D {
   public void showUnitDetails() {
     this.unitDetails.Text = "Unit:\t\t" + this.Name +
       "\nHP:\t\t" + this.currentHp + "/" + this.maxHp +
-      "\nAtk:\t\t" + this.minAtk + "-" + this.atk + 
+      "\nAtk:\t\t" + this.minAtk + "-" + this.atk +
       "\nHeal:\t" + (this.canHeal ? this.minAtk + "-" + this.atk : "-") +
       "\nMove:\t" + (this.movement - (this.isEnemy ? 2 : 1)) +
-      "\nRange:\t" + this.atkRange + 
+      "\nRange:\t" + this.atkRange +
       "\nTurn:\t" + (this.isTurn ? "Ready" : (this.isTeamTurn ? "Taken" : "Waiting"));
   }
 

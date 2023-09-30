@@ -6,7 +6,7 @@ public partial class TomeUnit : AllyUnit {
   public override void _Ready() {
     base._Ready();
 
-    this.movement = 6;
+    this.movement = 4;
     this.maxHp = 4;
     this.currentHp = this.maxHp;
     this.atk = 2;

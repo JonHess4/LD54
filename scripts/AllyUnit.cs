@@ -8,7 +8,6 @@ using System.Runtime.CompilerServices;
 public partial class AllyUnit : Unit {
   public bool isSelected;
   public TileMap tilemap2;
-  public List<Vector2I> priorityCells;
 
   // Called when the node enters the scene tree for the first time.
   public override void _Ready() {

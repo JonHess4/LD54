@@ -1,12 +1,12 @@
 using Godot;
 
-public partial class SwordUnit : AllyUnit {
+public partial class ESwordUnit : EnemyUnit {
 
   // Called when the node enters the scene tree for the first time.
   public override void _Ready() {
     base._Ready();
 
-    this.movement = 3;
+    this.movement = 4;
     this.maxHp = 8;
     this.currentHp = this.maxHp;
     this.atk = 6;
