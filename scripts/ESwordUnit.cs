@@ -9,8 +9,8 @@ public partial class ESwordUnit : EnemyUnit {
     this.movement = 4;
     this.maxHp = 8;
     this.currentHp = this.maxHp;
-    this.atk = 6;
-    this.minAtk = 3;
+    this.atk = 5;
+    this.minAtk = 2;
     this.atkRange = 1;
 
     this.healthbar.MaxValue = this.maxHp;

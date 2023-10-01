@@ -60,6 +60,11 @@ public partial class EnemyUnit : Unit {
         this.isReachedNextTile = false;
         this.findTargetAndPath();
       }
+      if (this.path.Count <= 0) {
+        this.isTurnStarted = false;
+        this.endTurn();
+        return;
+      }
       this.tickTimer += delta;
       if (this.tickTimer >= this.tickRate) {
         this.tickTimer = 0;

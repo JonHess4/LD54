@@ -9,7 +9,7 @@ public partial class TomeUnit : AllyUnit {
     this.movement = 4;
     this.maxHp = 4;
     this.currentHp = this.maxHp;
-    this.atk = 2;
+    this.atk = 3;
     this.minAtk = 2;
     this.atkRange = 2;
     this.canHeal = true;

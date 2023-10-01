@@ -76,18 +76,26 @@ public partial class Unit : Sprite2D {
   }
 
   public void endTurn() {
-    this.isTurn = false;
-    this.Modulate = new Color(0.5f, 0.5f, 0.5f);
+    this.disable();
     Engine.checkEndTurn(this.isEnemy);
   }
 
   public void readyTurn() {
-    this.Modulate = new Color(1, 1, 1);
-    this.isTurn = true;
+    this.enable();
   }
 
   public void resetColor() {
     this.Modulate = new Color(1, 1, 1);
+  }
+
+  public void disable() {
+    this.isTurn = false;
+    this.Modulate = new Color(0.5f, 0.5f, 0.5f);
+  }
+
+  public void enable() {
+    this.Modulate = new Color(1, 1, 1);
+    this.isTurn = true;
   }
 
   public void showUnitDetails() {

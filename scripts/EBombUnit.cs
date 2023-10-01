@@ -30,7 +30,6 @@ public partial class EBombUnit : EnemyUnit {
   }
 
   public override void attack(Unit target) {
-    GD.Print("Here");
     int rand = new Random().Next(0, this.adjacent.Count);
     this.tilemap.SetCell(0, this.oldCellPos + this.adjacent[rand]);
   }
