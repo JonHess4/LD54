@@ -19,21 +19,24 @@ public partial class ButtonHelper : Godot.Button {
 
   // Called every frame. 'delta' is the elapsed time since the previous frame.
   public override void _Process(double delta) {
+    if (Engine.gameOver) {
+      return;
+    }
     if (Engine.isBuyPhase && !this.Visible) {
       this.Visible = true;
-      this.Disabled = false;
-      foreach(Unit unit in Engine.units) {
-        if (unit.Name == this.unitName) {
-          this.Disabled = true;
-          break;
-        }
-      }
+      // this.Disabled = false;
+      // foreach(Unit unit in Engine.getUnits()) {
+      //   if (unit.Name == this.unitName) {
+      //     this.Disabled = true;
+      //     break;
+      //   }
+      // }
     } else if (!Engine.isBuyPhase && this.Visible) {
       this.Visible = false;
     }
   }
 
-  
+
   public void spawn() {
     Sprite2D unitSprite = (Sprite2D)this.unit.Instantiate();
     Array<Vector2I> usedCells = tilemap.GetUsedCells(0);
@@ -52,7 +55,6 @@ public partial class ButtonHelper : Godot.Button {
   public override void _Pressed() {
     base._Pressed();
 
-    // TODO: Implement Cost
     this.spawn();
   }
 }

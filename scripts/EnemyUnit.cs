@@ -60,7 +60,7 @@ public partial class EnemyUnit : Unit {
         this.isReachedNextTile = false;
         this.findTargetAndPath();
       }
-      if (this.path.Count <= 0) {
+      if (this.path == null || this.path.Count <= 0) {
         this.isTurnStarted = false;
         this.endTurn();
         return;
@@ -111,7 +111,7 @@ public partial class EnemyUnit : Unit {
 
   public void findTargetAndPath() {
     double dist = 1000;
-    foreach (Unit unit in Engine.units) {
+    foreach (Unit unit in Engine.getUnits()) {
       if (unit.isEnemy != this.isEnemy) {
         double otherdist = this.Position.DistanceTo(unit.Position);
         if (otherdist < dist) {

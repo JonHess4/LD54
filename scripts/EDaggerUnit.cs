@@ -6,6 +6,8 @@ public partial class EDaggerUnit : EnemyUnit {
   public override void _Ready() {
     base._Ready();
 
+  this.unitName = "Red Dagger";
+
     this.movement = 7;
     this.maxHp = 2;
     this.currentHp = this.maxHp;

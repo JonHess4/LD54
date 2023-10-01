@@ -5,12 +5,13 @@ using Godot;
 using Godot.Collections;
 
 public partial class Engine : Camera2D {
-  public static HashSet<Unit> units = new HashSet<Unit>();
-  public static Camera2D _cam;
+  public static String endGameText = "";
+  private static HashSet<Unit> _units;
   public static TileMap _tilemap;
   public static bool isBuyPhase = false;
   public static int round = 1;
   public static int prevRound = 1;
+  public static bool gameOver = false;
 
   public static PackedScene enemyDagger = GD.Load<PackedScene>("res://scenes/red_dagger.tscn");
   public static PackedScene enemySword = GD.Load<PackedScene>("res://scenes/red_sword.tscn");
@@ -23,16 +24,6 @@ public partial class Engine : Camera2D {
     enemyBomb
   };
 
-  public static Camera2D getCam() {
-    if (_cam == null) {
-      MainLoop mainLoop = Godot.Engine.GetMainLoop();
-      SceneTree sceneTree = mainLoop as SceneTree;
-      Array<Node> nodes = sceneTree.GetNodesInGroup("Cam");
-      _cam = (Camera2D)nodes[0];
-    }
-    return _cam;
-  }
-
   public static TileMap getTilemap() {
     if (_tilemap == null) {
       MainLoop mainLoop = Godot.Engine.GetMainLoop();
@@ -43,14 +34,21 @@ public partial class Engine : Camera2D {
     return _tilemap;
   }
 
+  public static HashSet<Unit> getUnits() {
+    if (_units == null) {
+      _units = new HashSet<Unit>();
+    }
+    return _units;
+  }
+
   public static void addUnit(Unit unit) {
-    units.Add(unit);
+    getUnits().Add(unit);
   }
 
   public static void removeUnit(Unit removedUnit) {
-    units.Remove(removedUnit);
+    getUnits().Remove(removedUnit);
     bool endCombat = true;
-    foreach (Unit unit in units) {
+    foreach (Unit unit in getUnits()) {
       if (unit.isEnemy == removedUnit.isEnemy) {
         endCombat = false;
         break;
@@ -60,10 +58,8 @@ public partial class Engine : Camera2D {
       if (removedUnit.isEnemy) {
         endCombatPhase();
       } else {
-        units.Clear();
-        MainLoop mainLoop = Godot.Engine.GetMainLoop();
-        SceneTree sceneTree = mainLoop as SceneTree;
-        sceneTree.ReloadCurrentScene();
+        endGameText = "[center]Game Over: On round " + round + ", Party was wiped out[/center]";
+        onGameOver();
       }
     }
   }
@@ -71,7 +67,7 @@ public partial class Engine : Camera2D {
   public static void endBuyPhase() {
     isBuyPhase = false;
 
-    foreach (Unit unit in units) {
+    foreach (Unit unit in getUnits()) {
       if (unit.isEnemy) {
         unit.resetColor();
       } else {
@@ -80,14 +76,14 @@ public partial class Engine : Camera2D {
     }
 
     int prev = round;
-    round += prevRound;
+    round += 1 + Mathf.RoundToInt(round / 4);
     prevRound = prev;
     Random rand = new Random();
     TileMap tilemap = getTilemap();
     Array<Vector2I> usedCells = tilemap.GetUsedCells(0);
     usedCells.Shuffle();
     for (int i = 0; i < round; i++) {
-      int dex = rand.Next(0, enemieScenes.Count);
+      int dex = round == 2 ? 3 : rand.Next(0, enemieScenes.Count);
       Sprite2D enemy = (Sprite2D)enemieScenes[dex].Instantiate();
       foreach (Vector2I cell in usedCells) {
         if (AStar.isOccupied(tilemap, cell, null) == null) {
@@ -102,14 +98,14 @@ public partial class Engine : Camera2D {
   public static void endCombatPhase() {
     isBuyPhase = true;
 
-    foreach (Unit unit in units) {
+    foreach (Unit unit in getUnits()) {
       unit.disable();
     }
   }
 
   public static void checkEndTurn(bool isEnemy) {
     bool turnFlip = true;
-    foreach (Unit unit in units) {
+    foreach (Unit unit in getUnits()) {
       if (unit.isEnemy == isEnemy) {
         if (unit.isTurn) {
           turnFlip = false;
@@ -119,7 +115,23 @@ public partial class Engine : Camera2D {
     }
 
     if (turnFlip) {
-      foreach (Unit unit in units) {
+      TileMap tilemap = getTilemap();
+      foreach (Unit unit in getUnits()) {
+        foreach (Unit targetUnit in getUnits()) {
+          if (unit.isEnemy && !targetUnit.isEnemy) {
+            if (tilemap.GetCellTileData(0, tilemap.LocalToMap(targetUnit.Position)) == null) {
+              continue;
+            } else {
+              List<Vector2I> path = AStar.findPath(tilemap.LocalToMap(unit.Position), tilemap.LocalToMap(targetUnit.Position), tilemap, unit, null);
+              if (path.Count <= 0) {
+                endGameText = "[center]Game Over: On round " + round + ", unreachable enemy detected[/center]";
+                onGameOver();
+                return;
+              }
+            }
+          }
+        }
+
         if (unit.isEnemy != isEnemy) {
           unit.readyTurn();
           unit.isTeamTurn = true;
@@ -129,5 +141,20 @@ public partial class Engine : Camera2D {
         }
       }
     }
+  }
+
+  public static void onGameOver() {
+    gameOver = true;
+  }
+
+  public static void onReset() {
+    gameOver = false;
+    _units = null;
+    _tilemap = null;
+    round = 1;
+    prevRound = 1;
+    MainLoop mainLoop = Godot.Engine.GetMainLoop();
+    SceneTree sceneTree = mainLoop as SceneTree;
+    sceneTree.ReloadCurrentScene();
   }
 }

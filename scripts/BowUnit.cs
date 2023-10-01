@@ -6,6 +6,7 @@ public partial class BowUnit : AllyUnit {
   public override void _Ready() {
 	base._Ready();
 
+  this.unitName = "Blue Bow";
 	this.movement = 4;
 	this.maxHp = 6;
 	this.currentHp = this.maxHp;

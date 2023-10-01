@@ -11,6 +11,8 @@ public partial class EBombUnit : EnemyUnit {
   public override void _Ready() {
     base._Ready();
 
+    this.unitName = "Red Bomb";
+
     this.movement = 3;
     this.maxHp = 2;
     this.currentHp = this.maxHp;
@@ -31,6 +33,10 @@ public partial class EBombUnit : EnemyUnit {
 
   public override void attack(Unit target) {
     int rand = new Random().Next(0, this.adjacent.Count);
+    Unit occupiedUnit = AStar.isOccupied(this.tilemap, this.oldCellPos + this.adjacent[rand], this);
+    if (occupiedUnit != null) {
+      occupiedUnit.modHp(occupiedUnit.currentHp * -1);
+    }
     this.tilemap.SetCell(0, this.oldCellPos + this.adjacent[rand]);
   }
 }

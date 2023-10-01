@@ -6,6 +6,8 @@ public partial class ESwordUnit : EnemyUnit {
   public override void _Ready() {
     base._Ready();
 
+  this.unitName = "Red Sword";
+
     this.movement = 4;
     this.maxHp = 8;
     this.currentHp = this.maxHp;

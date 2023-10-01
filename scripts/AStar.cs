@@ -8,6 +8,9 @@ using System.Runtime.CompilerServices;
 public class AStar {
   public static List<Vector2I> findPath(Vector2I startCellPos, Vector2I targetCellPos, TileMap tilemap, Unit movingUnit, List<Vector2I> priorityCells) {
     List<Vector2I> path = new List<Vector2I>();
+    if (Engine.gameOver) {
+      return path;
+    }
 
     Tile start = new Tile();
     start.Y = startCellPos.Y;
@@ -84,24 +87,24 @@ public class AStar {
 
     var possibleTiles = new List<Tile>();
 
-    foreach(Vector2I tilecord in tileCords) {
+    foreach (Vector2I tilecord in tileCords) {
       int cost = currentTile.Cost + 1;
-      if (priorityCells.Contains(tilecord)) {
+      if (priorityCells != null && priorityCells.Contains(tilecord)) {
         cost -= 2;
       }
       possibleTiles.Add(new Tile { X = tilecord.X, Y = tilecord.Y, Parent = currentTile, Cost = cost });
     }
-  //   var possibleTiles = new List<Tile>()
-  //   {
-  //   new Tile { X = currentTile.X, Y = currentTile.Y - 1, Parent = currentTile, Cost = currentTile.Cost + 1 },
-  //   new Tile { X = currentTile.X, Y = currentTile.Y + 1, Parent = currentTile, Cost = currentTile.Cost + 1},
-  //   new Tile { X = currentTile.X - 1, Y = currentTile.Y, Parent = currentTile, Cost = currentTile.Cost + 1 },
-  //   new Tile { X = currentTile.X + 1, Y = currentTile.Y, Parent = currentTile, Cost = currentTile.Cost + 1 }
-  // };
+    //   var possibleTiles = new List<Tile>()
+    //   {
+    //   new Tile { X = currentTile.X, Y = currentTile.Y - 1, Parent = currentTile, Cost = currentTile.Cost + 1 },
+    //   new Tile { X = currentTile.X, Y = currentTile.Y + 1, Parent = currentTile, Cost = currentTile.Cost + 1},
+    //   new Tile { X = currentTile.X - 1, Y = currentTile.Y, Parent = currentTile, Cost = currentTile.Cost + 1 },
+    //   new Tile { X = currentTile.X + 1, Y = currentTile.Y, Parent = currentTile, Cost = currentTile.Cost + 1 }
+    // };
 
     possibleTiles.ForEach(tile => {
       tile.SetDistance(targetTile.X, targetTile.Y);
-  });
+    });
 
     return possibleTiles
         // TODO: figure out detecting traversable vs non-traversable tiles
@@ -137,7 +140,7 @@ public class AStar {
     bool isTraversable;
 
     isTraversable = tilemap.GetCellTileData(0, cellPos) != null;
-    foreach (Unit unit in Engine.units) {
+    foreach (Unit unit in Engine.getUnits()) {
       isTraversable = isTraversable && (!(unit.isEnemy != movingUnit.isEnemy && cellPos == tilemap.LocalToMap(unit.Position)) || movingUnit.isEnemy);
       if (!isTraversable) {
         break;
@@ -150,7 +153,7 @@ public class AStar {
   public static Unit isOccupied(TileMap tilemap, Vector2I cellPos, Unit movingUnit) {
     Unit foundUnit = null;
 
-    foreach (Unit unit in Engine.units) {
+    foreach (Unit unit in Engine.getUnits()) {
       if (unit != movingUnit && cellPos == tilemap.LocalToMap(unit.Position)) {
         foundUnit = unit;
         break;
