@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://y5lda55kwsg1"]
+
+[ext_resource type="Texture2D" uid="uid://dhf5v02b3r0j7" path="res://sprites/blue-bow.png" id="1_fp3aa"]
+[ext_resource type="Script" path="res://scripts/BowUnit.gd" id="2_r7b5g"]
+[ext_resource type="FontFile" uid="uid://cj2ejkugssfnv" path="res://fonts/Ohrenstead.ttf" id="3_li04u"]
+
+[node name="BlueBow" type="Sprite2D"]
+position = Vector2(-16, 21)
+texture = ExtResource("1_fp3aa")
+script = ExtResource("2_r7b5g")
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+offset_left = -10.0
+offset_right = 34.0
+offset_bottom = 27.0
+scale = Vector2(0.5, 0.5)
+show_percentage = false
+
+[node name="DamageText" type="RichTextLabel" parent="."]
+offset_left = -5.0
+offset_top = -39.0
+offset_right = 11.0
+offset_bottom = -25.0
+theme_override_fonts/normal_font = ExtResource("3_li04u")
+fit_content = true

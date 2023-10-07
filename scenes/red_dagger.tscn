@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://budylnuh80j6n"]
+
+[ext_resource type="Texture2D" uid="uid://3avx6leboycm" path="res://sprites/red-dagger.png" id="1_egyl7"]
+[ext_resource type="Script" path="res://scripts/EDaggerUnit.gd" id="2_tquvc"]
+[ext_resource type="FontFile" uid="uid://cj2ejkugssfnv" path="res://fonts/Ohrenstead.ttf" id="3_b8nh4"]
+
+[node name="RedDagger" type="Sprite2D"]
+position = Vector2(-16, 21)
+texture = ExtResource("1_egyl7")
+script = ExtResource("2_tquvc")
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+offset_left = -10.0
+offset_right = 34.0
+offset_bottom = 27.0
+scale = Vector2(0.5, 0.5)
+show_percentage = false
+
+[node name="DamageText" type="RichTextLabel" parent="."]
+offset_left = -5.0
+offset_top = -39.0
+offset_right = 11.0
+offset_bottom = -25.0
+theme_override_fonts/normal_font = ExtResource("3_b8nh4")
+fit_content = true

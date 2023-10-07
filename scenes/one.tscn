@@ -1,0 +1,326 @@
+[gd_scene load_steps=30 format=3 uid="uid://bj2w4qj3ohpib"]
+
+[ext_resource type="Texture2D" uid="uid://bdmv5lceococr" path="res://sprites/Meh.png" id="1_k2ji8"]
+[ext_resource type="Script" path="res://scripts/TileMap3.gd" id="2_ntro4"]
+[ext_resource type="FontFile" uid="uid://cj2ejkugssfnv" path="res://fonts/Ohrenstead.ttf" id="2_uelm3"]
+[ext_resource type="Texture2D" uid="uid://3avx6leboycm" path="res://sprites/red-dagger.png" id="3_u8cqb"]
+[ext_resource type="Texture2D" uid="uid://cevs6qi4bqj86" path="res://sprites/blue-sword.png" id="4_3y0p6"]
+[ext_resource type="Script" path="res://scripts/BuyPhaseDetails.gd" id="4_ijn00"]
+[ext_resource type="Script" path="res://scripts/InstructionsTitle.gd" id="5_wq0wr"]
+[ext_resource type="Texture2D" uid="uid://dhf5v02b3r0j7" path="res://sprites/blue-bow.png" id="6_nmcu6"]
+[ext_resource type="Script" path="res://scripts/EDaggerUnit.gd" id="7_bkoa7"]
+[ext_resource type="Texture2D" uid="uid://yrs153yse1b" path="res://sprites/blue-book.png" id="7_eq820"]
+[ext_resource type="Texture2D" uid="uid://b3lodwt62t72q" path="res://sprites/blue-dagger.png" id="8_ocuae"]
+[ext_resource type="Script" path="res://scripts/SwordUnit.gd" id="9_k7ui3"]
+[ext_resource type="AudioStream" uid="uid://bmpalgwf1sfkp" path="res://sound/meh.wav" id="9_xxvd1"]
+[ext_resource type="Script" path="res://scripts/BtnSword.gd" id="10_6dl6p"]
+[ext_resource type="Script" path="res://scripts/BtnBow.gd" id="11_8ytd8"]
+[ext_resource type="Script" path="res://scripts/BtnTome.gd" id="13_dm4ji"]
+[ext_resource type="Script" path="res://scripts/BtnDagger.gd" id="15_wisw4"]
+[ext_resource type="Script" path="res://scripts/EndGameDetails.gd" id="17_6qlrm"]
+[ext_resource type="Script" path="res://scripts/EndBuyPhaseBtn.gd" id="18_55gfu"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4oykt"]
+texture = ExtResource("1_k2ji8")
+texture_region_size = Vector2i(32, 32)
+1:1/0 = 0
+2:1/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_ay8p6"]
+tile_size = Vector2i(32, 32)
+sources/0 = SubResource("TileSetAtlasSource_4oykt")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_j4myg"]
+texture = ExtResource("1_k2ji8")
+texture_region_size = Vector2i(32, 32)
+1:1/0 = 0
+2:1/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_lyb5e"]
+tile_size = Vector2i(32, 32)
+sources/0 = SubResource("TileSetAtlasSource_j4myg")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_81xo8"]
+texture = ExtResource("1_k2ji8")
+texture_region_size = Vector2i(32, 32)
+1:1/0 = 0
+2:1/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_4epnl"]
+tile_size = Vector2i(32, 32)
+sources/0 = SubResource("TileSetAtlasSource_81xo8")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ocat6"]
+bg_color = Color(0.466667, 0.54902, 0.501961, 0.478431)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hnneg"]
+bg_color = Color(0.466667, 0.54902, 0.501961, 0.478431)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u06vj"]
+bg_color = Color(0.466667, 0.54902, 0.501961, 0.478431)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hygo2"]
+bg_color = Color(0.466667, 0.54902, 0.501961, 0.827451)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(8, 8)
+zoom = Vector2(2, 2)
+
+[node name="TileMap3" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_ay8p6")
+format = 2
+layer_0/tile_data = PackedInt32Array(-131076, 131072, 2, -65540, 131072, 2, -4, 131072, 2, 65532, 131072, 2, 131068, 131072, 2, 196604, 131072, 2, 262140, 131072, 2, 262141, 131072, 2, 327677, 131072, 2, 196605, 131072, 2, 131069, 131072, 2, 65533, 131072, 2, -3, 131072, 2, -65539, 131072, 2, -131075, 131072, 2, -196611, 131072, 2, -196610, 131072, 2, -131074, 131072, 2, -65538, 131072, 2, -2, 131072, 2, 65534, 131072, 2, 131070, 131072, 2, 196606, 131072, 2, 262142, 131072, 2, 327678, 131072, 2, 327679, 131072, 2, 262143, 131072, 2, 196607, 131072, 2, 131071, 131072, 2, 65535, 131072, 2, -1, 131072, 2, -65537, 131072, 2, -131073, 131072, 2, -196609, 131072, 2, -262144, 131072, 2, -196608, 131072, 2, -131072, 131072, 2, -65536, 131072, 2, 0, 131072, 2, 65536, 131072, 2, 131072, 131072, 2, 196608, 131072, 2, 262144, 131072, 2, 262145, 131072, 2, 196609, 131072, 2, 131073, 131072, 2, 65537, 131072, 2, 1, 131072, 2, -65535, 131072, 2, -131071, 131072, 2, -196607, 131072, 2, -262143, 131072, 2, -262142, 131072, 2, -196606, 131072, 2, -131070, 131072, 2, -65534, 131072, 2, 2, 131072, 2, 65538, 131072, 2, 131074, 131072, 2, 196610, 131072, 2, 262146, 131072, 2, 262147, 131072, 2, 196611, 131072, 2, 131075, 131072, 2, 65539, 131072, 2, 3, 131072, 2, -65533, 131072, 2, -131069, 131072, 2, -196605, 131072, 2, -262141, 131072, 2, -196604, 131072, 2, -131068, 131072, 2, -65532, 131072, 2, 4, 131072, 2, 65540, 131072, 2, 131076, 131072, 2, 196612, 131072, 2)
+script = ExtResource("2_ntro4")
+
+[node name="TileMap" type="TileMap" parent="." groups=["TileMap"]]
+tile_set = SubResource("TileSet_lyb5e")
+format = 2
+layer_0/tile_data = PackedInt32Array(0, 65536, 1, -65536, 65536, 1, -131072, 65536, 1, -196608, 65536, 1, -262144, 65536, 1, 262144, 65536, 1, 1, 65536, 1, 2, 65536, 1, 3, 65536, 1, 4, 65536, 1, 65535, 65536, 1, 65534, 65536, 1, 65533, 65536, 1, 65532, 65536, 1, -4, 65536, 1, -65540, 65536, 1, -131076, 65536, 1, -131075, 65536, 1, -196611, 65536, 1, -196610, 65536, 1, -196609, 65536, 1, -262143, 65536, 1, -262142, 65536, 1, -262141, 65536, 1, -196605, 65536, 1, -196604, 65536, 1, -131068, 65536, 1, -65532, 65536, 1, 65540, 65536, 1, 131076, 65536, 1, 131075, 65536, 1, 196611, 65536, 1, 262147, 65536, 1, 196612, 65536, 1, 262146, 65536, 1, 262145, 65536, 1, 327679, 65536, 1, 327678, 65536, 1, 327677, 65536, 1, 262141, 65536, 1, 262140, 65536, 1, 196604, 65536, 1, 131068, 65536, 1, 131069, 65536, 1, 196605, 65536, 1, 262142, 65536, 1, 196606, 65536, 1, 131070, 65536, 1, -1, 65536, 1, -65537, 65536, 1, -65538, 65536, 1, -131074, 65536, 1, -3, 65536, 1, -65539, 65536, 1, -2, 65536, 1, -131073, 65536, 1, 262143, 65536, 1, 196609, 65536, 1, -65535, 65536, 1, -131071, 65536, 1, -196607, 65536, 1, -196606, 65536, 1, -131070, 65536, 1, -65534, 65536, 1, 65538, 65536, 1, 131074, 65536, 1, 196610, 65536, 1, 65539, 65536, 1, -65533, 65536, 1, -131069, 65536, 1)
+
+[node name="TileMap2" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_4epnl")
+format = 2
+
+[node name="UnitDetailsTitle" type="RichTextLabel" parent="."]
+offset_left = 163.0
+offset_top = -131.0
+offset_right = 289.0
+offset_bottom = 8.0
+tooltip_text = "To see a unit's details, hover over it with the mouse."
+theme_override_fonts/normal_font = ExtResource("2_uelm3")
+theme_override_styles/normal = SubResource("StyleBoxFlat_ocat6")
+bbcode_enabled = true
+text = "
+[center]Unit Details (?)[/center]"
+fit_content = true
+
+[node name="UnitDetails" type="RichTextLabel" parent="."]
+offset_left = 174.0
+offset_top = -100.0
+offset_right = 288.0
+offset_bottom = 7.0
+theme_override_fonts/normal_font = ExtResource("2_uelm3")
+fit_content = true
+
+[node name="BuyPhaseDetails" type="RichTextLabel" parent="."]
+offset_left = -266.0
+offset_top = -128.0
+offset_right = -132.0
+offset_bottom = -47.0
+theme_override_fonts/normal_font = ExtResource("2_uelm3")
+theme_override_styles/normal = SubResource("StyleBoxFlat_hnneg")
+bbcode_enabled = true
+text = "
+[center]Choose One[/center]"
+fit_content = true
+script = ExtResource("4_ijn00")
+
+[node name="Opt1" type="RichTextLabel" parent="BuyPhaseDetails"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 29.0
+offset_right = 141.0
+offset_bottom = 45.0
+tooltip_text = "To recruit a unit, click the \"Recruit\" button next to the unit you want to recruit.
+The unit will be place in the center of the map and available for use in the next combat"
+theme_override_fonts/normal_font = ExtResource("2_uelm3")
+text = "1) Recruit One Unit (?)"
+fit_content = true
+
+[node name="Opt2" type="RichTextLabel" parent="BuyPhaseDetails"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 43.0
+offset_right = 141.0
+offset_bottom = 59.0
+tooltip_text = "To upgrade a unit, click on one of your existing units.
+Each stat will have a 50% chance to increase."
+theme_override_fonts/normal_font = ExtResource("2_uelm3")
+text = "2) Upgrade One Unit (?)"
+fit_content = true
+
+[node name="Opt3" type="RichTextLabel" parent="BuyPhaseDetails"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 58.0
+offset_right = 141.0
+offset_bottom = 74.0
+tooltip_text = "To restore a tile, click on one of the greyed-out tiles on the map."
+theme_override_fonts/normal_font = ExtResource("2_uelm3")
+text = "3) Restore One Tile (?)"
+fit_content = true
+
+[node name="InstructionsTitle" type="RichTextLabel" parent="."]
+visible = false
+offset_left = -266.0
+offset_top = -128.0
+offset_right = -132.0
+offset_bottom = 158.0
+theme_override_fonts/normal_font = ExtResource("2_uelm3")
+theme_override_styles/normal = SubResource("StyleBoxFlat_u06vj")
+bbcode_enabled = true
+text = "
+[center]Instructions[/center]"
+fit_content = true
+script = ExtResource("5_wq0wr")
+
+[node name="Instructions" type="RichTextLabel" parent="InstructionsTitle"]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 31.0
+offset_right = 125.0
+offset_bottom = 227.0
+theme_override_fonts/normal_font = ExtResource("2_uelm3")
+text = "Click and drag a blue unit to move.
+
+Drop a blue unit on top of a red unit to attack.
+
+Game Over 
+- All  blue units are defeated
+OR
+-  Any red unit is unreachable
+
+Goal: Survive"
+fit_content = true
+
+[node name="Instructions2" type="RichTextLabel" parent="InstructionsTitle"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 265.0
+offset_right = 124.0
+offset_bottom = 279.0
+theme_override_fonts/normal_font = ExtResource("2_uelm3")
+text = "(?) - Tooltip Indicator"
+
+[node name="RedDagger" type="Sprite2D" parent="."]
+position = Vector2(-16, 21)
+texture = ExtResource("3_u8cqb")
+script = ExtResource("7_bkoa7")
+
+[node name="HealthBar" type="ProgressBar" parent="RedDagger"]
+offset_left = -10.0
+offset_right = 34.0
+offset_bottom = 27.0
+scale = Vector2(0.5, 0.5)
+show_percentage = false
+
+[node name="DamageText" type="RichTextLabel" parent="RedDagger"]
+offset_left = -5.0
+offset_top = -39.0
+offset_right = 11.0
+offset_bottom = -25.0
+theme_override_fonts/normal_font = ExtResource("2_uelm3")
+fit_content = true
+
+[node name="BlueSword" type="Sprite2D" parent="."]
+position = Vector2(46, 22)
+texture = ExtResource("4_3y0p6")
+script = ExtResource("9_k7ui3")
+
+[node name="HealthBar" type="ProgressBar" parent="BlueSword"]
+offset_left = -10.0
+offset_right = 34.0
+offset_bottom = 27.0
+scale = Vector2(0.5, 0.5)
+show_percentage = false
+
+[node name="DamageText" type="RichTextLabel" parent="BlueSword"]
+offset_left = -5.0
+offset_top = -39.0
+offset_right = 11.0
+offset_bottom = -25.0
+theme_override_fonts/normal_font = ExtResource("2_uelm3")
+fit_content = true
+
+[node name="Button" type="Button" parent="."]
+offset_left = -217.0
+offset_top = -29.0
+offset_right = -177.0
+offset_bottom = -7.0
+theme_override_fonts/font = ExtResource("2_uelm3")
+text = "Recruit"
+script = ExtResource("10_6dl6p")
+
+[node name="Blue-sword" type="Sprite2D" parent="Button"]
+position = Vector2(-19, 19)
+texture = ExtResource("4_3y0p6")
+
+[node name="Button2" type="Button" parent="."]
+offset_left = -217.0
+offset_top = 13.0
+offset_right = -177.0
+offset_bottom = 35.0
+theme_override_fonts/font = ExtResource("2_uelm3")
+text = "Recruit"
+script = ExtResource("11_8ytd8")
+
+[node name="Blue-bow2" type="Sprite2D" parent="Button2"]
+position = Vector2(-19, 19)
+texture = ExtResource("6_nmcu6")
+
+[node name="Button3" type="Button" parent="."]
+offset_left = -217.0
+offset_top = 51.0
+offset_right = -177.0
+offset_bottom = 73.0
+theme_override_fonts/font = ExtResource("2_uelm3")
+text = "Recruit"
+script = ExtResource("13_dm4ji")
+
+[node name="Blue-book2" type="Sprite2D" parent="Button3"]
+position = Vector2(-19, 19)
+texture = ExtResource("7_eq820")
+
+[node name="Button4" type="Button" parent="."]
+offset_left = -217.0
+offset_top = 86.0
+offset_right = -177.0
+offset_bottom = 108.0
+theme_override_fonts/font = ExtResource("2_uelm3")
+text = "Recruit"
+script = ExtResource("15_wisw4")
+
+[node name="Blue-dagger" type="Sprite2D" parent="Button4"]
+position = Vector2(-19, 19)
+texture = ExtResource("8_ocuae")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+
+[node name="EndGameDetails" type="RichTextLabel" parent="CanvasLayer"]
+offset_left = -91.0
+offset_top = 1.0
+offset_right = 125.0
+offset_bottom = 18.0
+theme_override_fonts/normal_font = ExtResource("2_uelm3")
+theme_override_styles/normal = SubResource("StyleBoxFlat_hygo2")
+bbcode_enabled = true
+fit_content = true
+script = ExtResource("17_6qlrm")
+
+[node name="EndBuyPhaseBtn" type="Button" parent="CanvasLayer"]
+offset_left = -27.0
+offset_top = 34.0
+offset_right = 61.0
+offset_bottom = 56.0
+theme_override_fonts/font = ExtResource("2_uelm3")
+text = "Restart"
+script = ExtResource("18_55gfu")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_xxvd1")
+autoplay = true
