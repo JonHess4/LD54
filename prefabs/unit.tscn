@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://da6vgjgr2ofaw"]
+
+[ext_resource type="Texture2D" uid="uid://bnr0qmnpbndpp" path="res://sprites/unit.png" id="1_5g50d"]
+[ext_resource type="Script" path="res://archive/scripts/SwordUnit.cs" id="2_21a1q"]
+[ext_resource type="Texture2D" uid="uid://cdk0eaouhtv2a" path="res://sprites/healthBar.png" id="3_curkt"]
+[ext_resource type="FontFile" uid="uid://cj2ejkugssfnv" path="res://fonts/Ohrenstead.ttf" id="3_lqhh7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8brp4"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lpequ"]
+bg_color = Color(0.752941, 0.282353, 0.239216, 1)
+
+[node name="Unit" type="Sprite2D"]
+position = Vector2(48, 48)
+texture = ExtResource("1_5g50d")
+script = ExtResource("2_21a1q")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_curkt")
+
+[node name="HealthBar" type="ProgressBar" parent="Sprite2D"]
+anchors_preset = -1
+anchor_right = -0.0416667
+offset_left = -10.0
+offset_top = 6.0
+offset_right = 34.0
+offset_bottom = 14.0
+scale = Vector2(0.5, 0.5)
+theme_override_styles/background = SubResource("StyleBoxFlat_8brp4")
+theme_override_styles/fill = SubResource("StyleBoxFlat_lpequ")
+max_value = 10.0
+step = 1.0
+value = 6.0
+show_percentage = false
+metadata/_edit_use_anchors_ = true
+
+[node name="DamageText" type="RichTextLabel" parent="."]
+offset_left = -12.0
+offset_top = -38.0
+offset_right = 12.0
+offset_bottom = -24.0
+theme_override_fonts/normal_font = ExtResource("3_lqhh7")
+metadata/_edit_use_anchors_ = true

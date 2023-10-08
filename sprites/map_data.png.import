@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://o765k5l6wcka"
-path="res://.godot/imported/Meh.png-a3aa58c87ac5635b068c400cc5a570ec.ctex"
+uid="uid://cv46wgooh7mqd"
+path="res://.godot/imported/map_data.png-9f617d950f5af37fc8e6c28f64c09ed9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/Meh.png"
-dest_files=["res://.godot/imported/Meh.png-a3aa58c87ac5635b068c400cc5a570ec.ctex"]
+source_file="res://sprites/map_data.png"
+dest_files=["res://.godot/imported/map_data.png-9f617d950f5af37fc8e6c28f64c09ed9.ctex"]
 
 [params]
 

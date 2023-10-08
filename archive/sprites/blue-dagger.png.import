@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://o765k5l6wcka"
-path="res://.godot/imported/Meh.png-a3aa58c87ac5635b068c400cc5a570ec.ctex"
+uid="uid://b3lodwt62t72q"
+path="res://.godot/imported/blue-dagger.png-6c6cf56b8137a0c0288fdfa8019a99c8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/Meh.png"
-dest_files=["res://.godot/imported/Meh.png-a3aa58c87ac5635b068c400cc5a570ec.ctex"]
+source_file="res://archive/sprites/blue-dagger.png"
+dest_files=["res://.godot/imported/blue-dagger.png-6c6cf56b8137a0c0288fdfa8019a99c8.ctex"]
 
 [params]
 

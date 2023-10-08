@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://o765k5l6wcka"
-path="res://.godot/imported/Meh.png-a3aa58c87ac5635b068c400cc5a570ec.ctex"
+uid="uid://bxradc7j1f4wg"
+path="res://.godot/imported/red-sword.png-c3710a6014ea3b05bb603bf811d01c97.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/Meh.png"
-dest_files=["res://.godot/imported/Meh.png-a3aa58c87ac5635b068c400cc5a570ec.ctex"]
+source_file="res://archive/sprites/red-sword.png"
+dest_files=["res://.godot/imported/red-sword.png-c3710a6014ea3b05bb603bf811d01c97.ctex"]
 
 [params]
 

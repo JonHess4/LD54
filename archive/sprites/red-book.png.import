@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://o765k5l6wcka"
-path="res://.godot/imported/Meh.png-a3aa58c87ac5635b068c400cc5a570ec.ctex"
+uid="uid://cewc3v5pprpxa"
+path="res://.godot/imported/red-book.png-6dd27f7d6a9bf83a34eb4d6e481c366c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/Meh.png"
-dest_files=["res://.godot/imported/Meh.png-a3aa58c87ac5635b068c400cc5a570ec.ctex"]
+source_file="res://archive/sprites/red-book.png"
+dest_files=["res://.godot/imported/red-book.png-6dd27f7d6a9bf83a34eb4d6e481c366c.ctex"]
 
 [params]
 

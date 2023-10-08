@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://o765k5l6wcka"
-path="res://.godot/imported/Meh.png-a3aa58c87ac5635b068c400cc5a570ec.ctex"
+uid="uid://dhf5v02b3r0j7"
+path="res://.godot/imported/blue-bow.png-973a188fc35aaab25006e0ed949ef9d0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/Meh.png"
-dest_files=["res://.godot/imported/Meh.png-a3aa58c87ac5635b068c400cc5a570ec.ctex"]
+source_file="res://archive/sprites/blue-bow.png"
+dest_files=["res://.godot/imported/blue-bow.png-973a188fc35aaab25006e0ed949ef9d0.ctex"]
 
 [params]
 

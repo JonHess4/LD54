@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://o765k5l6wcka"
-path="res://.godot/imported/Meh.png-a3aa58c87ac5635b068c400cc5a570ec.ctex"
+uid="uid://yrs153yse1b"
+path="res://.godot/imported/blue-book.png-d1530d9b6062acf9275449ad3b35b2ea.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/Meh.png"
-dest_files=["res://.godot/imported/Meh.png-a3aa58c87ac5635b068c400cc5a570ec.ctex"]
+source_file="res://archive/sprites/blue-book.png"
+dest_files=["res://.godot/imported/blue-book.png-d1530d9b6062acf9275449ad3b35b2ea.ctex"]
 
 [params]
 
