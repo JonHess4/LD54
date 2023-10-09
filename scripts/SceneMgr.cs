@@ -38,8 +38,9 @@ public partial class SceneMgr : Node2D {
   // Might want to pull from a json files still though
   public void initEnemyList() {
     this.enemyList = new List<Unit>();
-
-    this.enemyList.Add(new Unit());
+    Swordsman swordsman = new Swordsman();
+    swordsman.group = "enemy";
+    this.enemyList.Add(swordsman);
   }
 
   public void spawnUnits(TileMap tilemap, List<Vector2I> spawnPoints, List<Unit> units) {

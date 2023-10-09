@@ -9,7 +9,9 @@ public class GameMgr {
     get {
       if (_allyUnits == null) {
         _allyUnits = new List<Unit>();
-        _allyUnits.Add(new Unit());
+        Swordsman swordsman = new Swordsman();
+        swordsman.group = "ally";
+        _allyUnits.Add(swordsman);
       }
       return _allyUnits;
     }
