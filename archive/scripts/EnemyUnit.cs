@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Godot;
 
-public partial class EnemyUnit : Unit {
+public partial class EnemyUnit : BaseUnit {
   // Called when the node enters the scene tree for the first time.
   public Texture2D idleTexture;
   public static Texture2D targetedTexture;
@@ -111,7 +111,7 @@ public partial class EnemyUnit : Unit {
 
   public void findTargetAndPath() {
     double dist = 1000;
-    foreach (Unit unit in Engine.getUnits()) {
+    foreach (BaseUnit unit in Engine.getUnits()) {
       if (unit.isEnemy != this.isEnemy) {
         double otherdist = this.Position.DistanceTo(unit.Position);
         if (otherdist < dist) {
@@ -124,7 +124,7 @@ public partial class EnemyUnit : Unit {
       this.path = AStar.findPath(this.tilemap.LocalToMap(this.Position), this.tilemap.LocalToMap(this.target.Position), this.tilemap, this, this.priorityCells).Take(this.movement).ToList();
       while (this.path.Count > 1) {
         this.path.RemoveAt(this.path.Count - 1);
-        Unit occupantUnit = AStar.isOccupied(this.tilemap, this.path.Last(), this);
+        BaseUnit occupantUnit = AStar.isOccupied(this.tilemap, this.path.Last(), this);
         if (occupantUnit == null) {
           break;
         }
@@ -132,7 +132,7 @@ public partial class EnemyUnit : Unit {
     }
   }
 
-  public override void attack(Unit target) {
+  public override void attack(BaseUnit target) {
     base.attack(target);
   }
 }

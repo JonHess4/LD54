@@ -35,7 +35,7 @@ public partial class TileMap3 : TileMap {
           this.endPhase = true;
         }
 
-        foreach (Unit unit in Engine.getUnits()) {
+        foreach (BaseUnit unit in Engine.getUnits()) {
           if (this.LocalToMap(unit.Position) == mosCellPos) {
             unit.upgrade();
             this.endPhase = true;

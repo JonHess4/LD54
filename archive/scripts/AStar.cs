@@ -6,7 +6,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 
 public class AStar {
-  public static List<Vector2I> findPath(Vector2I startCellPos, Vector2I targetCellPos, TileMap tilemap, Unit movingUnit, List<Vector2I> priorityCells) {
+  public static List<Vector2I> findPath(Vector2I startCellPos, Vector2I targetCellPos, TileMap tilemap, BaseUnit movingUnit, List<Vector2I> priorityCells) {
     List<Vector2I> path = new List<Vector2I>();
     if (Engine.gameOver) {
       return path;
@@ -78,7 +78,7 @@ public class AStar {
     return path;
   }
 
-  private static List<Tile> getWalkableTiles(TileMap tilemap, Tile currentTile, Tile targetTile, Unit movingUnit, List<Vector2I> priorityCells) {
+  private static List<Tile> getWalkableTiles(TileMap tilemap, Tile currentTile, Tile targetTile, BaseUnit movingUnit, List<Vector2I> priorityCells) {
     List<Vector2I> tileCords = new List<Vector2I>();
     tileCords.Add(new Vector2I(currentTile.X, currentTile.Y + 1));
     tileCords.Add(new Vector2I(currentTile.X, currentTile.Y - 1));
@@ -136,11 +136,11 @@ public class AStar {
     return bounds;
   }
 
-  public static bool isTraversable(TileMap tilemap, Vector2I cellPos, Unit movingUnit) {
+  public static bool isTraversable(TileMap tilemap, Vector2I cellPos, BaseUnit movingUnit) {
     bool isTraversable;
 
     isTraversable = tilemap.GetCellTileData(0, cellPos) != null;
-    foreach (Unit unit in Engine.getUnits()) {
+    foreach (BaseUnit unit in Engine.getUnits()) {
       isTraversable = isTraversable && (!(unit.isEnemy != movingUnit.isEnemy && cellPos == tilemap.LocalToMap(unit.Position)) || movingUnit.isEnemy);
       if (!isTraversable) {
         break;
@@ -150,10 +150,10 @@ public class AStar {
     return isTraversable;
   }
 
-  public static Unit isOccupied(TileMap tilemap, Vector2I cellPos, Unit movingUnit) {
-    Unit foundUnit = null;
+  public static BaseUnit isOccupied(TileMap tilemap, Vector2I cellPos, BaseUnit movingUnit) {
+    BaseUnit foundUnit = null;
 
-    foreach (Unit unit in Engine.getUnits()) {
+    foreach (BaseUnit unit in Engine.getUnits()) {
       if (unit != movingUnit && cellPos == tilemap.LocalToMap(unit.Position)) {
         foundUnit = unit;
         break;

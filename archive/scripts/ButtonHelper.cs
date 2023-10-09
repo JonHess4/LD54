@@ -20,7 +20,7 @@ public partial class ButtonHelper : Godot.Button {
     if (Engine.isBuyPhase && !this.Visible) {
       this.Visible = true;
       // this.Disabled = false;
-      // foreach(Unit unit in Engine.getUnits()) {
+      // foreach(BaseUnit unit in Engine.getUnits()) {
       //   if (unit.Name == this.unitName) {
       //     this.Disabled = true;
       //     break;

@@ -2,14 +2,14 @@ using System;
 using System.Collections.Generic;
 using Godot;
 
-public partial class Unit : Sprite2D {
+public partial class BaseUnit : Sprite2D {
   public string unitName;
   public TileMap tilemap;
   public Vector2I posMod = new Vector2I(0, 0);
   public Vector2I oldCellPos;
   public Vector2I targetCellPos;
   public List<Vector2I> path;
-  public Unit target;
+  public BaseUnit target;
   protected bool isTargeted;
   public bool isEnemy;
   public int movement;
@@ -18,7 +18,7 @@ public partial class Unit : Sprite2D {
   public int atk;
   public int minAtk;
   public int atkRange;
-  public Unit oldTarget;
+  public BaseUnit oldTarget;
   public bool canHeal = false;
   public bool isTurn;
   public ProgressBar healthbar;
@@ -68,7 +68,7 @@ public partial class Unit : Sprite2D {
     }
   }
 
-  public virtual void attack(Unit target) {
+  public virtual void attack(BaseUnit target) {
     if (target != null) {
       int mod = new Random().Next(this.minAtk, this.atk + 1) * -1;
       if (this.canHeal && target.isEnemy == this.isEnemy) {
@@ -103,7 +103,7 @@ public partial class Unit : Sprite2D {
   }
 
   public void showUnitDetails() {
-    this.unitDetails.Text = "Unit:\t\t" + this.unitName + " (?)" +
+    this.unitDetails.Text = "BaseUnit:\t\t" + this.unitName + " (?)" +
       "\nHP:\t\t" + this.currentHp + "/" + this.maxHp +
       "\nAtk:\t\t" + this.minAtk + "-" + this.atk +
       "\nHeal:\t" + (this.canHeal ? this.minAtk + "-" + this.atk : "-") +

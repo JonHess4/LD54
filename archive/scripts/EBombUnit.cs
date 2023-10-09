@@ -31,9 +31,9 @@ public partial class EBombUnit : EnemyUnit {
     };
   }
 
-  public override void attack(Unit target) {
+  public override void attack(BaseUnit target) {
     int rand = new Random().Next(0, this.adjacent.Count);
-    Unit occupiedUnit = AStar.isOccupied(this.tilemap, this.oldCellPos + this.adjacent[rand], this);
+    BaseUnit occupiedUnit = AStar.isOccupied(this.tilemap, this.oldCellPos + this.adjacent[rand], this);
     if (occupiedUnit != null) {
       occupiedUnit.modHp(occupiedUnit.currentHp * -1);
     }

@@ -5,7 +5,7 @@ using System.Dynamic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 
-public partial class AllyUnit : Unit {
+public partial class AllyUnit : BaseUnit {
   public bool isSelected;
   public TileMap tilemap2;
 
@@ -85,7 +85,7 @@ public partial class AllyUnit : Unit {
         }
 
         bool isTraversable = AStar.isTraversable(this.tilemap, newTargetCellPos, this);
-        Unit occupantUnit = AStar.isOccupied(this.tilemap, newTargetCellPos, this);
+        BaseUnit occupantUnit = AStar.isOccupied(this.tilemap, newTargetCellPos, this);
         // try to path to the new target cell pos
         if (isTraversable && occupantUnit == null) {
           this.clearPath(this.path, this.tilemap2);

@@ -6,7 +6,7 @@ using Godot.Collections;
 
 public partial class Engine : Camera2D {
   public static String endGameText = "";
-  private static HashSet<Unit> _units;
+  private static HashSet<BaseUnit> _units;
   public static TileMap _tilemap;
   public static bool isBuyPhase = false;
   public static int round = 1;
@@ -34,21 +34,21 @@ public partial class Engine : Camera2D {
     return _tilemap;
   }
 
-  public static HashSet<Unit> getUnits() {
+  public static HashSet<BaseUnit> getUnits() {
     if (_units == null) {
-      _units = new HashSet<Unit>();
+      _units = new HashSet<BaseUnit>();
     }
     return _units;
   }
 
-  public static void addUnit(Unit unit) {
+  public static void addUnit(BaseUnit unit) {
     getUnits().Add(unit);
   }
 
-  public static void removeUnit(Unit removedUnit) {
+  public static void removeUnit(BaseUnit removedUnit) {
     getUnits().Remove(removedUnit);
     bool endCombat = true;
-    foreach (Unit unit in getUnits()) {
+    foreach (BaseUnit unit in getUnits()) {
       if (unit.isEnemy == removedUnit.isEnemy) {
         endCombat = false;
         break;
@@ -67,7 +67,7 @@ public partial class Engine : Camera2D {
   public static void endBuyPhase() {
     isBuyPhase = false;
 
-    foreach (Unit unit in getUnits()) {
+    foreach (BaseUnit unit in getUnits()) {
       if (unit.isEnemy) {
         unit.resetColor();
       } else {
@@ -98,14 +98,14 @@ public partial class Engine : Camera2D {
   public static void endCombatPhase() {
     isBuyPhase = true;
 
-    foreach (Unit unit in getUnits()) {
+    foreach (BaseUnit unit in getUnits()) {
       unit.disable();
     }
   }
 
   public static void checkEndTurn(bool isEnemy) {
     bool turnFlip = true;
-    foreach (Unit unit in getUnits()) {
+    foreach (BaseUnit unit in getUnits()) {
       if (unit.isEnemy == isEnemy) {
         if (unit.isTurn) {
           turnFlip = false;
@@ -116,8 +116,8 @@ public partial class Engine : Camera2D {
 
     if (turnFlip) {
       TileMap tilemap = getTilemap();
-      foreach (Unit unit in getUnits()) {
-        foreach (Unit targetUnit in getUnits()) {
+      foreach (BaseUnit unit in getUnits()) {
+        foreach (BaseUnit targetUnit in getUnits()) {
           if (unit.isEnemy && !targetUnit.isEnemy) {
             if (tilemap.GetCellTileData(0, tilemap.LocalToMap(targetUnit.Position)) == null) {
               continue;
