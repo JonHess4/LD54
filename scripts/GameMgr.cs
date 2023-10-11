@@ -3,6 +3,7 @@ using Godot;
 
 public class GameMgr {
   public static PackedScene unitScene = GD.Load<PackedScene>("res://prefabs/unit.tscn");
+  public static TileMap tilemap;
 
   private static List<Unit> _allyUnits;
   public static List<Unit> allyUnits {
