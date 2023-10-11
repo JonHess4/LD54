@@ -12,6 +12,8 @@ texture_region_size = Vector2i(32, 32)
 2:2/0 = 0
 1:3/0 = 0
 2:3/0 = 0
+3:1/0 = 0
+3:2/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_ckul8"]
 tile_size = Vector2i(32, 32)
@@ -29,3 +31,17 @@ zoom = Vector2(2, 2)
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_ckul8")
 format = 2
+layer_1/name = ""
+layer_1/enabled = true
+layer_1/modulate = Color(1, 1, 1, 1)
+layer_1/y_sort_enabled = false
+layer_1/y_sort_origin = 0
+layer_1/z_index = 0
+layer_1/tile_data = PackedInt32Array()
+layer_2/name = ""
+layer_2/enabled = true
+layer_2/modulate = Color(1, 1, 1, 1)
+layer_2/y_sort_enabled = false
+layer_2/y_sort_origin = 0
+layer_2/z_index = 0
+layer_2/tile_data = PackedInt32Array()
